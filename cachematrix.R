@@ -33,7 +33,7 @@ cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
   inv_x <- x$getinverse()
   if (!is.null(inv_x)) {
-    message("getting cached inverse matrix")
+    message("getting cached inverse matrix...")
     return(inv_x)
   } else {
     inv_x <- solve(x$get())
@@ -43,23 +43,25 @@ cacheSolve <- function(x, ...) {
 }
 
 ## Sample run:
-## > x = rbind(c(1, -1/4), c(-1/4, 1))
+## > x = rbind(c(2, 1/2), c(1/3, 3))
 ## > m = makeCacheMatrix(x)
 ## > m$get()
-##       [,1]  [,2]
-## [1,]  1.00 -0.25
-## [2,] -0.25  1.00
-
+##          [,1] [,2]
+## [1,] 2.0000000  0.5
+## [2,] 0.3333333  3.0
+##
 ## No cache in the first run
 ## > cacheSolve(m)
-##           [,1]      [,2]
-## [1,] 1.0666667 0.2666667
-## [2,] 0.2666667 1.0666667
-
+##          [,1]  [,2]
+## [1,] 2.0000000  0.5
+## [2,] 0.3333333  3.0
+##
 ## Retrieving from the cache in the second run
+##
 ## > cacheSolve(m)
-## getting cached data.
-##           [,1]      [,2]
-## [1,] 1.0666667 0.2666667
-## [2,] 0.2666667 1.0666667
-## > 
+##
+## getting cached inverse matrix...
+##             [,1]        [,2]
+## [1,]  0.51428571 -0.08571429
+## [2,] -0.05714286  0.34285714
+##
